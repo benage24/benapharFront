@@ -1,0 +1,20 @@
+
+<div class=" w-full ">
+    <!-- <p>products-module works!</p> -->
+    <div class="flex w-full justify-center mt-3">
+        <!-- <button [routerLink]="['/main/product/liste']" type="button" class="text-white bg-[#11B07A] hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 font-medium rounded-full text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Liste des produits</button> -->
+
+        <button routerLinkActive="bg-[#11B07A] text-white" [routerLink]="['/main/caisse/report/']" type="button" class="text-[#11B07A] text-base border-4 border-[#11B07A] hover:bg-[#11B07A] hover:text-white focus:outline-none focus:ring-4 focus:ring-green-300 font-medium rounded-full  px-5 py-2.5 text-center mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Raport de caisse</button>
+        <button routerLinkActive="bg-[#11B07A] text-white" [routerLink]="['/main/caisse/expense']" type="button" class="text-[#11B07A] text-base border-4 border-[#11B07A] hover:bg-[#11B07A] hover:text-white focus:outline-none focus:ring-4 focus:ring-green-300 font-medium rounded-full  px-5 py-2.5 text-center mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Liste de depenses</button>
+        <button routerLinkActive="bg-[#11B07A] text-white" [routerLink]="['/main/product/add']" type="button" class="text-[#11B07A] text-base border-4 border-[#11B07A] hover:bg-[#11B07A] hover:text-white focus:outline-none focus:ring-4 focus:ring-green-300 font-medium rounded-full  px-5 py-2.5 text-center mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Ajouter une depense</button>
+        <button routerLinkActive="bg-[#11B07A] text-white" [routerLink]="['/main/caisse/sales']" type="button" class="text-[#11B07A] text-base border-4 border-[#11B07A] hover:bg-[#11B07A] hover:text-white focus:outline-none focus:ring-4 focus:ring-green-300 font-medium rounded-full  px-5 py-2.5 text-center mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Liste des ventes</button>
+        <button routerLinkActive="bg-[#11B07A] text-white" [routerLink]="['/main/product/add']" type="button" class="text-[#11B07A] text-base border-4 border-[#11B07A] hover:bg-[#11B07A] hover:text-white focus:outline-none focus:ring-4 focus:ring-green-300 font-medium rounded-full  px-5 py-2.5 text-center mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Ajouter une vente</button>
+
+
+    </div>
+
+    <div class="bg-[#F7F7F7] shadow-2xl mx-10 mt-10 mb-7">
+        <router-outlet></router-outlet>
+        
+    </div>
+</div>

@@ -1,0 +1,29 @@
+
+<!-- <div class=" flex  w-full ">
+    <div class=" fixed z-50 shadow-lg h-[100vh]  {{!toggledData? ' w-20 transition-all ease-in-out delay-150 duration-100 ':'w-72 transition-all ease-in-out delay-150 duration-100 '}} ">
+        <app-sidebar></app-sidebar>
+    </div>
+    <div class="   h-screen flex flex-col ml-20 {{!toggledData? 'w-[1520px] transition-all ease-in-out delay-150 duration-100 ':'w-full transition-all ease-in-out delay-150 duration-100 '}}  ">
+        <div class="w-full  fixed z-40">
+            <app-header></app-header>
+        </div>
+        <div class="  max-h-screen  mt-20  ">
+          <router-outlet></router-outlet>
+        </div>
+        
+    </div>
+</div> -->
+
+<div class="   bg-[#F7F7F7] flex">
+    
+    <div class="  w-1/6">
+        <app-sidebar></app-sidebar>
+    </div>
+    <div class=" w-full bg-white overflow-hidden    rounded-l-3xl shadow-2xl border-l-1 bor">
+        <div class="w-full ">
+            <app-header></app-header>
+        </div>
+        <router-outlet></router-outlet>
+    </div>
+</div>
+

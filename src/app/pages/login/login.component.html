@@ -1,0 +1,49 @@
+<!-- <form class="d-flex flex-column align-items-center my-4" action="/admin/tableau-de-board">
+    <div class=" row col-sm-8">
+      <input [(ngModel)]="userLogin.username"  name="username" class="form-control rounded-pill ps-5  p-4 " type="text" placeholder="Nom d'utilisateur ou adresse mail" aria-label="Search"/>
+    </div>
+    <p class="my-2 text-start " style="color: tomato;">
+      {{ userErrors?.username && typing ? userErrors.username : "" }}
+  </p>
+    <div class=" row col-sm-8 mt-4">
+      <input [type]="passView ? 'password':'text'" [(ngModel)]="userLogin.password" name="password" class="form-control rounded-pill ps-5 p-4 " type="password" placeholder="Mot de passe" aria-label="Search"/>
+    </div>
+    <p class="my-2 text-start " style="color: tomato;">
+      {{ userErrors?.password && typing ? userErrors.password : "" }}
+  </p>
+    <div class="text-center ">
+          <button  (click)="login()" class="bg-red-800 text-white btn-bikeko-primary rounded-pill me-4 px-5 mt-5 py-2 p-4" >Se connecter</button>
+    </div>
+</form> -->
+
+
+<div class="bg-slate-100 flex w-full h-screen items-center justify-center">
+  <div class="w-full max-w-md">
+    <div class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
+      <div class="mb-4">
+        <label class="block text-gray-700 text-sm font-bold mb-2" for="username">
+          Username
+        </label>
+        <input [(ngModel)]="userLogin.username"  class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="username" type="text" placeholder="Username">
+      </div>
+      <div class="mb-6">
+        <label class="block text-gray-700 text-sm font-bold mb-2" for="password">
+          Password
+        </label>
+        <input [(ngModel)]="userLogin.password" class="shadow appearance-none border  rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline" id="password" type="password" placeholder="******************">
+        <p class=" text-xs italic">Please choose a password.</p>
+      </div>
+      <div class="flex items-center justify-between">
+       
+        <button  (click)="login()"   type="button" class="text-[#11B07A] text-base border-2 border-[#11B07A] hover:bg-[#11B07A] hover:text-white focus:outline-none focus:ring-4 focus:ring-blue-300 font-medium rounded-full  px-5 py-2.5 text-center mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Connexion</button>
+
+        <a class="inline-block align-baseline font-bold text-sm text-blue-500 hover:text-blue-800" href="#">
+          Forgot Password?
+        </a>
+      </div>
+    </div>
+    <p class="text-center text-gray-500 text-xs">
+      &copy;2020 Acme Corp. All rights reserved.
+    </p>
+  </div>
+</div>
