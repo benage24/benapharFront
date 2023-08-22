@@ -60,6 +60,45 @@ getSales(): Observable<any> {
   );
 }
 
+saveSale(data:any): Observable<any> {
+  const url = `${environment.baseUrl}/caisse/sales/create/`;
+  return this.http.post(url,data).pipe(
+    catchError(error => {
+        if (error.status === 401) {
+          // Redirect to login page if session expired
+          this.router.navigate(['/login']);
+        }
+        return throwError(error);
+      })
+  );
+
+  
+}
+
+deleteSale(id: number): Observable<any> {
+  const url = `${environment.baseUrl}/caisse/sales/delete/${id}/`;
+  return this.http.delete(url).pipe(
+    catchError(error => {
+      if (error.status === 401) {
+        this.router.navigate(['/login']);
+      }
+      return throwError(error);
+    })
+  );
+}
+
+deleteExpense(id: number): Observable<any> {
+  const url = `${environment.baseUrl}/caisse/expense/delete/${id}/`;
+  return this.http.delete(url).pipe(
+    catchError(error => {
+      if (error.status === 401) {
+        this.router.navigate(['/login']);
+      }
+      return throwError(error);
+    })
+  );
+}
+
 // saveProduct(data:any): Observable<any> {
 //   const url = `${environment.baseUrl}/product/create/`;
 //   return this.http.post(url,data).pipe(

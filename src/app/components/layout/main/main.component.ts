@@ -14,7 +14,7 @@ export class MainComponent {
   ) {
     this.sharedService.data$.subscribe((data) => {
       this.toggledData = data;
-      console.log("togglr",this.toggledData);
+      console.log("togglr home",this.toggledData);
       
     });
   }

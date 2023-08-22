@@ -43,7 +43,7 @@ export class ProductListComponent {
     this.productService.getProductList().subscribe(
       (res: any) => {
         this.appConfig.onStopWaiting();
-       this.productList = res;
+       this.productList = res.results  ;
        console.log("rrtr",res);
        
       },

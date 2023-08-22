@@ -16,11 +16,11 @@
 
 <div class="   bg-[#F7F7F7] flex">
     
-    <div class="  w-1/6">
+    <div class="   {{toggledData? 'w-20':'w-1/6'}}">
         <app-sidebar></app-sidebar>
     </div>
-    <div class=" w-full bg-white overflow-hidden    rounded-l-3xl shadow-2xl border-l-1 bor">
-        <div class="w-full ">
+    <div class=" w-full  overflow-hidden {{toggledData? 'w-20 transition-all ease-in-out delay-150 duration-100':'w-1/6 transition-all ease-in-out delay-150 duration-100 rounded-l-3xl'}} border-2     shadow-2xl border-l-1 ">
+        <div class="w-full  ">
             <app-header></app-header>
         </div>
         <router-outlet></router-outlet>

@@ -13,7 +13,10 @@
                     Depense
                 </th>
                 <th scope="col" class="px-6 py-3">
-                    Total
+                    Solde
+                </th>
+                <th scope="col" class="px-6 py-3">
+                    Epargne
                 </th>
                 <!-- <th scope="col" class="px-6 py-3">
                     Prix
@@ -40,10 +43,13 @@
                 <td class="px-6 py-4">
                     {{item.profit}}   FC       
                 </td>
-                <td class="px-6 py-4 text-right flex space-x-5">
-                    <!-- <a (click)="navigateToUpdate(item.id)" class="cursor-pointer font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
-                    <i (click)="deleteProduct(item.id)" class="bi bi-trash-fill text-red-700 text-base cursor-pointer"></i> -->
+                <td class="px-6 py-4">
+                    {{item.saving}}   FC       
                 </td>
+                <!-- <td class="px-6 py-4 text-right flex space-x-5">
+                    <a (click)="navigateToUpdate(item.id)" class="cursor-pointer font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
+                    <i (click)="deleteProduct(item.id)" class="bi bi-trash-fill text-red-700 text-base cursor-pointer"></i>
+                </td> -->
                
               
             </tr>

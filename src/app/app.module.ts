@@ -15,6 +15,8 @@ import { CaisseListComponent } from './pages/caisses/caisse-list/caisse-list.com
 import { CaisseReportComponent } from './pages/caisses/caisse-report/caisse-report.component';
 import { ExpenseListComponent } from './pages/caisses/expense-list/expense-list.component';
 import { SaleListComponent } from './pages/caisses/sale-list/sale-list.component';
+import { AddSaleComponent } from './pages/caisses/add-sale/add-sale.component';
+import { AddExpenseComponent } from './pages/caisses/add-expense/add-expense.component';
 
 @NgModule({
   declarations: [
@@ -26,6 +28,8 @@ import { SaleListComponent } from './pages/caisses/sale-list/sale-list.component
     CaisseReportComponent,
     ExpenseListComponent,
     SaleListComponent,
+    
+    AddExpenseComponent,
 
   ],
   imports: [

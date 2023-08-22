@@ -48,19 +48,19 @@ constructor(private dialog: MatDialog,private appConfig: AppConfigService, priva
   //   this.fetchItemDetails();
   // });
 }
-getProduct(){
+// getProduct(){
  
-  this.productService.getProductList().subscribe(
-    (res: any) => {
-     this.productList = res;
-     console.log("rrtr",res);
+//   this.productService.getProductList().subscribe(
+//     (res: any) => {
+//      this.productList = res;
+//      console.log("rrtr",res);
      
-    },
-    (erro:any) => {
-      console.error('Error fetching data:', );
-    }
-  );
-}
+//     },
+//     (erro:any) => {
+//       console.error('Error fetching data:', );
+//     }
+//   );
+// }
 
 // saveProduct() {
 //   this.productService.save$(this.product, 'create/').subscribe({
