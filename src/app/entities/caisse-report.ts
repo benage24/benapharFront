@@ -5,6 +5,7 @@ export class ReportCaisse{
     total_sales!:number
     date!:string
     profit!:number
+    solde!:number
     amount!:number
 
 }

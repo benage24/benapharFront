@@ -20,21 +20,9 @@ export class CaisseService {
 
 
 
-getReport(): Observable<any> {
-  const url = `${environment.baseUrl}/caisse/report`;
-  return this.http.get(url).pipe(
-    catchError(error => {
-        if (error.status === 401) {
-          // Redirect to login page if session expired
-          this.router.navigate(['/login']);
-        }
-        return throwError(error);
-      })
-  );
-}
 
-getExpenset(): Observable<any> {
-  const url = `${environment.baseUrl}/caisse/expense/list`;
+getCaisse(path:string): Observable<any> {
+  const url = `${environment.baseUrl}/caisse/${path}`;
   return this.http.get(url).pipe(
     catchError(error => {
         if (error.status === 401) {
@@ -47,18 +35,7 @@ getExpenset(): Observable<any> {
 }
 
 
-getSales(): Observable<any> {
-  const url = `${environment.baseUrl}/caisse/sales/list`;
-  return this.http.get(url).pipe(
-    catchError(error => {
-        if (error.status === 401) {
-          // Redirect to login page if session expired
-          this.router.navigate(['/login']);
-        }
-        return throwError(error);
-      })
-  );
-}
+
 
 saveSale(data:any): Observable<any> {
   const url = `${environment.baseUrl}/caisse/sales/create/`;

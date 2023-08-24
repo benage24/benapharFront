@@ -6,6 +6,7 @@ export class SaleList{
     date!:string
     profit!:number
     amount!:number
-
+    count!:any
+    results!:[]
 
 }
