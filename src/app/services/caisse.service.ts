@@ -38,7 +38,22 @@ getCaisse(path:string): Observable<any> {
 
 
 saveSale(data:any): Observable<any> {
-  const url = `${environment.baseUrl}/caisse/sales/create/`;
+  const url = `${environment.baseUrl}/caisse/sales/`;
+  return this.http.post(url,data).pipe(
+    catchError(error => {
+        if (error.status === 401) {
+          // Redirect to login page if session expired
+          this.router.navigate(['/login']);
+        }
+        return throwError(error);
+      })
+  );
+
+  
+}
+
+saveExpense(data:any): Observable<any> {
+  const url = `${environment.baseUrl}/caisse/expense/`;
   return this.http.post(url,data).pipe(
     catchError(error => {
         if (error.status === 401) {
@@ -53,7 +68,7 @@ saveSale(data:any): Observable<any> {
 }
 
 deleteSale(id: number): Observable<any> {
-  const url = `${environment.baseUrl}/caisse/sales/delete/${id}/`;
+  const url = `${environment.baseUrl}/caisse/sales/${id}/`;
   return this.http.delete(url).pipe(
     catchError(error => {
       if (error.status === 401) {
@@ -65,7 +80,7 @@ deleteSale(id: number): Observable<any> {
 }
 
 deleteExpense(id: number): Observable<any> {
-  const url = `${environment.baseUrl}/caisse/expense/delete/${id}/`;
+  const url = `${environment.baseUrl}/caisse/expense/${id}/`;
   return this.http.delete(url).pipe(
     catchError(error => {
       if (error.status === 401) {

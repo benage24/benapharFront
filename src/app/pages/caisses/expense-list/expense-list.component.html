@@ -1,5 +1,28 @@
 
-<div class="relative overflow-x-auto shadow-md border sm:rounded-lg">
+<div class="relative overflow-x-auto border my-10 bg-[#fff] shadow-2xl  sm:rounded-lg">
+  <div class="flex items-center space-x-4 justify-center my-4">   
+    <label for="simple-search" class="sr-only">Search</label>
+    <div>
+        <p class="pt-4 font-normal text-base">Du</p>
+    </div>
+    <div class="relative w-1/4">
+        
+        <input type="date" id="simple-search" [(ngModel)]="startDate" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-[#11B07A] focus:border-[#11B07A] block w-full pl-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Search branch name..." required>
+    </div>
+    <div>
+        <p class="pt-4 font-normal text-base">Au</p>
+    </div>
+    <div class="relative w-1/4 ">
+        
+        <input type="date" id="simple-search" [(ngModel)]="endDate" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-[#11B07A] focus:border-[#11B07A] block w-full pl-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Search branch name..." required>
+    </div>
+    <button (click)="   filterExpenseList()" type="submit" class="p-2.5 ml-2 text-sm font-medium text-white bg-[#11B07A] rounded-lg border border-[#11B07A] hover:bg-[#11B07A] focus:ring-4 focus:outline-none focus:ring-blue-300 ">
+        <svg class="w-4 h-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
+            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z"/>
+        </svg>
+        <span class="sr-only">Search</span>
+    </button>
+</div>
     <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
         <thead class="text-xs text-gray-700 uppercase bg-gray-100 dark:bg-gray-700 dark:text-gray-400">
             <tr>
@@ -19,7 +42,7 @@
             </tr>
         </thead>
         <tbody>
-            <tr  *ngFor="let expense of expenseList?.results; index as ind;"  class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
+            <tr  *ngFor="let expense of expenseList; index as ind;"  class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
                 <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                 {{expense.date}}
                 </th>

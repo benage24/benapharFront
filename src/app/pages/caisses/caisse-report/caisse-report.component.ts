@@ -1,4 +1,6 @@
+import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Subscription, finalize } from 'rxjs';
@@ -12,7 +14,9 @@ import { environment } from 'src/environments/environment';
 @Component({
   selector: 'app-caisse-report',
   templateUrl: './caisse-report.component.html',
-  styleUrls: ['./caisse-report.component.scss']
+  styleUrls: ['./caisse-report.component.scss'],
+  standalone: true,
+  imports: [CommonModule,FormsModule],
 })
 export class CaisseReportComponent {
   reportList!:any
@@ -23,6 +27,15 @@ export class CaisseReportComponent {
   prev: boolean = false;
   page=1
   pages: Array<number> = new Array<number>();
+  startDate!:string
+  endDate!:string
+  expenseCount!:number
+  soldeCount!:number
+  totalCount!:number
+  salesCount!:number
+
+
+
   // pages: number[] = []; // Initialize the array
   pageSize: number = 10; // Set a constant page size
   private Subscriptions: Subscription = new Subscription();
@@ -41,6 +54,7 @@ export class CaisseReportComponent {
     const link=this.next
     console.log("link",link);
     this.getPageRange()
+    this.  getCaisseCount()
     // this. getPaginationLink()
   }
 
@@ -123,24 +137,68 @@ goToPage(pageNumber: number) {
   }
 
 
-  // getPageRange() {
-    
-  //   if (this.pagination.count) return [];
+  filterCaisseReport(){
+    this.appConfig.onStartWaiting();
+    this.subscriptionService.add(this.caiseService.getCaisse(`report/filter?start_date=${this.startDate}&end_date=${this.endDate}`).pipe(
+      finalize(() => {
+        this.appConfig.onStopWaiting();
+      })
+    ).subscribe({
+      next:(res )=>{
+        this.appConfig.onStopWaiting();
+        if (res !== null && res !== undefined) {
+          this.reportList = res        as ReportCaisse[];
+          this.next=res.next
+          this.prev=res.previous
+          this.pagination=res.count
+          console.log("sold",res  );
+           // Update page number based on the current response
+          //  this.page = res.results.current_page;
 
-  //   const totalPages = Math.ceil(this.pagination.count / this.pagination.page_size);
-  //   // console.log(totalPages);
-    
-  //   return Array.from({ length: totalPages }, (_, i) => i + 1);
-  // }
+        // Calculate total number of pages
+        const totalPages = Math.ceil(res.count/res.page_size );
 
-  // Generate the URL for a specific page
-  // getPaginationLink() {
-  //   //return `environment.baseUrl?page=${page}`;
-  //  const link=`${environment.baseUrl}/caisse/report?page=${2}`
-  //   console.log("link",link);
-    
-  //   return link
-  // }
+        // Populate the pages array
+        this.pages = Array.from({ length: totalPages }, (_, i) => i+1 );
 
+        console.log(totalPages,this.page);
+        
+          
+        }
+      },
+      error: (e) => {
+        // Handle error
+      },
+    }))
+  }
+
+
+
+  getCaisseCount(){
+    this.appConfig.onStartWaiting();
+    this.subscriptionService.add(this.caiseService.getCaisse(`report/count/`).pipe(
+      finalize(() => {
+        this.appConfig.onStopWaiting();
+      })
+    ).subscribe({
+      next:(res )=>{
+        this.appConfig.onStopWaiting();
+        if (res !== null && res !== undefined) {
+          this.reportList = res
+          this.soldeCount=res.total_solde
+          this.expenseCount=res.total_expenses
+          this.totalCount=res.total_profit
+          this.salesCount=res.total_sum_sale
+          
+          console.log("sold",res.sums  );
+       
+          
+        }
+      },
+      error: (e) => {
+        // Handle error
+      },
+    }))
+  }
     
 }

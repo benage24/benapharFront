@@ -25,11 +25,8 @@ import { AddExpenseComponent } from './pages/caisses/add-expense/add-expense.com
     DialogInfosComponent,
    
     CaisseListComponent,
-    CaisseReportComponent,
-    ExpenseListComponent,
-    SaleListComponent,
-    
-    AddExpenseComponent,
+   
+ 
 
   ],
   imports: [
