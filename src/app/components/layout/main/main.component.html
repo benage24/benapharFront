@@ -1,20 +1,6 @@
 
-<!-- <div class=" flex  w-full ">
-    <div class=" fixed z-50 shadow-lg h-[100vh]  {{!toggledData? ' w-20 transition-all ease-in-out delay-150 duration-100 ':'w-72 transition-all ease-in-out delay-150 duration-100 '}} ">
-        <app-sidebar></app-sidebar>
-    </div>
-    <div class="   h-screen flex flex-col ml-20 {{!toggledData? 'w-[1520px] transition-all ease-in-out delay-150 duration-100 ':'w-full transition-all ease-in-out delay-150 duration-100 '}}  ">
-        <div class="w-full  fixed z-40">
-            <app-header></app-header>
-        </div>
-        <div class="  max-h-screen  mt-20  ">
-          <router-outlet></router-outlet>
-        </div>
-        
-    </div>
-</div> -->
 
-<div class="   bg-[#F7F7F7] flex">
+<!-- <div class="   bg-[#F7F7F7] flex">
     
     <div class="   {{toggledData? 'w-20':'w-1/6'}}">
         <app-sidebar></app-sidebar>
@@ -25,5 +11,26 @@
         </div>
         <router-outlet></router-outlet>
     </div>
+</div> -->
+
+
+
+
+<div  class="flex w-full h-full bg-[#EDEDED]  ">
+    <div class=" h-screen w-1/6">
+        <app-sidebar></app-sidebar>
+    </div>
+        <div class="w-5/6 ">
+        
+        <div class="  w-5/6">
+            
+            <app-header></app-header>
+        </div>
+        
+           <div class=" bg-[#EDEDED] pt-24 px-4 pb-4">
+            <router-outlet></router-outlet>
+           </div>
+        </div>
 </div>
+
 

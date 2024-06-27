@@ -1,4 +1,40 @@
 
+<div class="flex w-full space-x-4  max-sm:flex-col selection:max-sm:space-y-4 ">
+  <div class="bg-white shadow-lg border rounded-md text-4xl w-full p-4 ">
+     <!-- <p  class="text-[#11B07A]"> GRAPH HERE</p> -->
+     <!-- <app-line-chart [chartData]="data"></app-line-chart> -->
+     <canvas id="myChart" width="400" height="250"></canvas>
+  </div>
+  <div  class=" gap-4 w-full grid grid-cols-2 p-0">
+      
+<a href="#" class="block max-w-sm p-6  bg-[#31B68E] border border-gray-200 rounded-lg shadow hover:bg-[#31B68E] dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700">
+
+<h5 class="mb-2 text-2xl font-bold tracking-tight text-white dark:text-white">Noteworthy technology acquisitions 2021</h5>
+<p class="font-normal text-white dark:text-gray-400">Here are the biggest enterprise technology acquisitions of 2021 so far, in reverse chronological order.</p>
+</a>
+
+<a href="#" class="block max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700">
+
+  <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Noteworthy technology acquisitions 2021</h5>
+  <p class="font-normal text-gray-700 dark:text-gray-400">Here are the biggest enterprise technology acquisitions of 2021 so far, in reverse chronological order.</p>
+  </a>
+
+  <a href="#" class="block max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700">
+
+      <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Noteworthy technology acquisitions 2021</h5>
+      <p class="font-normal text-gray-700 dark:text-gray-400">Here are the biggest enterprise technology acquisitions of 2021 so far, in reverse chronological order.</p>
+      </a>
+
+
+      <a href="#" class="block max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700">
+
+          <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Noteworthy technology acquisitions 2021</h5>
+          <p class="font-normal text-gray-700 dark:text-gray-400">Here are the biggest enterprise technology acquisitions of 2021 so far, in reverse chronological order.</p>
+          </a>
+
+  </div>
+</div>
+
 <div class="relative overflow-x-auto border my-10 bg-[#fff] shadow-2xl  sm:rounded-lg">
   <div class="flex items-center space-x-4 justify-center my-4">   
     <label for="simple-search" class="sr-only">Search</label>
@@ -22,6 +58,12 @@
         </svg>
         <span class="sr-only">Search</span>
     </button>
+    <div class="px-4 w-full flex justify-end ">
+      <button (click)="AddSales()"  type="submit" class="p-2.5 ml-2 text-sm font-medium text-white bg-[#11B07A] rounded-lg border border-[#11B07A] hover:bg-[#11B07A] focus:ring-4 focus:outline-none focus:ring-blue-300 ">
+        
+          <span class=""> + Vente</span>
+      </button>
+     </div>
 </div>
     <table class="w-full text-sm  border text-left text-gray-500 dark:text-gray-400">
         <thead class="text-xs text-gray-700 uppercase bg-gray-100 dark:bg-gray-700 dark:text-gray-400">

@@ -9,6 +9,7 @@ import { SubscriptionService } from 'src/app/services/subscription.service';
 import { SaleResponse } from 'src/app/entities/sale-reponse';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { ExpenseDialogComponent } from 'src/app/components/dialogs/expense-dialog/expense-dialog.component';
 @Component({
   selector: 'app-expense-list',
   templateUrl: './expense-list.component.html',
@@ -70,7 +71,7 @@ export class ExpenseListComponent {
             this.expenseList = res.results;
             this.next=res.next
             this.prev=res.previous
-            console.log("rrtr",res);
+            console.log("rrtr",this.expenseList);
             const totalPages = Math.ceil(res.count/res.page_size );
 
             // Populate the pages array
@@ -136,5 +137,18 @@ export class ExpenseListComponent {
     )
 
    
+  }
+
+  addExpense() {
+    const dialogRef = this.dialog.open(ExpenseDialogComponent, {
+      height: '80%',
+      width: '40%',
+
+    });
+
+    dialogRef.afterClosed().subscribe((result) => {
+      console.log(`Dialog result: ${result}`);
+    });
+    console.log('it works');
   }
 }

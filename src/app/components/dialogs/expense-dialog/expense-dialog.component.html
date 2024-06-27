@@ -1,0 +1,117 @@
+<div class=" flex justify-end p-4 text-2xl font-semibold">
+  <i class=" bi bi-x-circle cursor-pointer" (click)="close()"></i>
+</div>
+<div class="flex justify-center py-0">
+  <p class=" font-semibold text-lg">Ajouter une depense</p>
+
+</div>
+
+<div class="flex bg-white my-0     justify-center w-full p-5 ">
+    <form [formGroup]="expenseForm" class="w-full max-w-lg">
+        <div class="flex flex-wrap -mx-3 mb-6">
+         
+          <div class="mb-3 w-full ">
+            <label
+              [class]="
+               
+                   'block uppercase tracking-wide text-gray-400 font-juliusSans text-xs font-bold mb-2'
+                  
+              "
+              for="grid-game-number"
+            >
+            Date
+            </label>
+            <input
+              id="grid-game-number"
+              class="p-2 w-full bg-transparent focus:outline-secondaryBlue border border-[#415969] rounded font-medium font-juliusSans tracking-wide 'text-black "
+              type="date"
+              
+              formControlName="date"
+              placeholder="Date"
+            />
+  
+  
+          </div>`
+
+
+          <div  class="flex  space-x-8 ">
+            <div class="w-full" formArrayName="amounts" >
+              <div *ngFor="let ball of getAmountsControls(); let i = index" class="flex w-full space-x-4" formGroupName="{{i}}">
+                <div class="grid grid-cols-2 gap-2 gap-y-2">
+              
+                
+                <div class="mb-3 w-full">
+                  <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-last-name">
+                    Montant
+                  </label>
+                    <input
+                        
+                      formControlName="montant"
+                      id="grid-game-number"
+                      class="p-2 w-full bg-transparent focus:outline-secondaryBlue border border-[#415969] rounded font-medium font-juliusSans tracking-wide "
+                      type="number"
+                      required
+                      min="0"
+                      placeholder="Montant"
+                    />
+                  </div>
+                
+                  <div class="mb-3 w-full">
+                    <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-last-name">
+                      Description
+                    </label>
+                    <input
+                      [name]=" i"
+                      formControlName="description"
+                      id="grid-game-number"
+                      class="p-2 w-full bg-transparent focus:outline-secondaryBlue border border-[#415969] rounded font-medium font-juliusSans tracking-wide "
+                      type="text"
+                      min="0"
+                      placeholder=" Description"
+                    />
+    
+                    
+                  </div>
+                 
+    
+                 
+                
+               
+                  
+      
+                </div>
+               
+                <i (click)=" removeInput(i)" *ngIf="getAmountsControls().length >1 " class="bi bi-dash-circle-fill text-red-500 cursor-pointer text-xl pt-7 "></i>
+               
+               
+              </div>
+             </div>
+             <div class="mb-3 cursor-pointer pt-7 ">
+              <i (click)=" addInput()" class="bi bi-plus-circle-fill text-xl pt-10"></i>
+            </div>
+          </div>
+
+          
+     
+        
+        </div>
+
+       
+
+          <div class="flex flex-wrap -mx-3 mb-6">
+           
+          
+        <div class="flex flex-wrap w-full mx-3 mb-6">
+          <div class="w-full px-0">
+            <button (click)=" saveExpense()"  type="button"  class="text-[#fff] bg-[#11B07A] text-base border-2 border-[#11B07A] hover:bg-[#11B07A] hover:text-white focus:outline-none focus:ring-4 focus:ring-blue-300 font-medium rounded-full w-full  px-5 py-2.5 text-center  mb-2">Ajouter </button>
+
+          </div>
+        </div>
+       
+    </div>
+
+
+
+
+  </form>
+  </div>

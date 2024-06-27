@@ -3,6 +3,7 @@ import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { Router, ActivatedRoute } from '@angular/router';
+import { ValidationError, validate } from 'class-validator';
 import { AddSale } from 'src/app/entities/add-sale';
 import { ExpenseAdd } from 'src/app/entities/expense-add';
 import { AppFeeback } from 'src/app/enums/app-feedback.enum';
@@ -22,7 +23,7 @@ export class AddExpenseComponent {
   expense:ExpenseAdd=new ExpenseAdd()
   productList:any
   isUpdate:boolean=false
-  
+  expenseErrors: any = {};
   constructor(
     public dialog: MatDialog,
        private appConfig: AppConfigService,
@@ -34,7 +35,25 @@ export class AddExpenseComponent {
          ){
   
   }
-  saveSale() {
+
+  async validateOrReject() {
+    try {
+      await validate(this.expense).then((errors: any) => {
+        if (Array.isArray(errors) && errors.length > 0) throw errors;
+        else this.saveExpense();
+      });
+    } catch (errors) {
+      if (Array.isArray(errors)) {
+        this.expenseErrors = {};
+        errors.map((error: ValidationError) => {
+          this.expenseErrors[error.property] = error.constraints?.['isNotEmpty'];
+        });
+      } else {
+        AppUtilitie.openInfoDialog(this.dialog, AppFeeback.NETWORK_ERROR);
+      }
+    }
+  }
+  saveExpense() {
     this.appConfig.onStartWaiting();
     this.caiseService.saveExpense(this.expense).subscribe({
       next: (res: any) => {

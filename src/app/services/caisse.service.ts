@@ -7,7 +7,7 @@ import { environment } from 'src/environments/environment';
 @Injectable({
   providedIn: 'root'
 })
-export class CaisseService {
+export class CaisseService  {
 
  
   constructor(
@@ -34,11 +34,54 @@ getCaisse(path:string): Observable<any> {
   );
 }
 
+getCurrentMonthGraph(path:string): Observable<any> {
+  const url = `${environment.baseUrl}/caisse/${path}`;
+  return this.http.get(url).pipe(
+    catchError(error => {
+        if (error.status === 401) {
+          // Redirect to login page if session expired
+          this.router.navigate(['/login']);
+        }
+        return throwError(error);
+      })
+  );
+}
+
+
+// getHustory(path:string): Observable<any> {
+//   const url = `${environment.baseUrl}/user/${path}`;
+//   return this.http.get(url).pipe(
+//     catchError(error => {
+//         if (error.status === 401) {
+//           // Redirect to login page if session expired
+//           this.router.navigate(['/login']);
+//         }
+//         return throwError(error);
+//       })
+//   );
+// }
+
 
 
 
 saveSale(data:any): Observable<any> {
   const url = `${environment.baseUrl}/caisse/sales/`;
+  return this.http.post(url,data).pipe(
+    catchError(error => {
+        if (error.status === 401) {
+          // Redirect to login page if session expired
+          this.router.navigate(['/login']);
+        }
+        return throwError(error);
+      })
+  );
+
+  
+}
+
+
+saveUploadedFile(data:any): Observable<any> {
+  const url = `${environment.baseUrl}/file/upload/`;
   return this.http.post(url,data).pipe(
     catchError(error => {
         if (error.status === 401) {

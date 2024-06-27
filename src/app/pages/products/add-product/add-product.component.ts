@@ -34,8 +34,8 @@ constructor(private dialog: MatDialog,private appConfig: AppConfigService, priva
     this.itemId=param['product'];
     if(this.itemId){
       this.isUpdate = true;
-      // this.product.name=this.itemId.name;
-      // this.product.quantity=this.itemId.quantity
+      this.product.name=this.itemId.name;
+      this.product.quantity=this.itemId.quantity
       this.fetchItemDetails();
       console.log('item ',  this.itemId);
     }
@@ -81,22 +81,22 @@ constructor(private dialog: MatDialog,private appConfig: AppConfigService, priva
 // }
 
 fetchItemDetails() {
-  this.productService.detailProduct(this.itemId).subscribe(
-    (response) => {
-      this.product = response;
-      console.log( this.product );
+  // this.productService.detailProduct(this.itemId,'product').subscribe(
+  //   (response) => {
+  //     this.product = response;
+  //     console.log( this.product );
       
-    },
-    (error) => {
-      console.error('Error fetching item details', error);
-    }
-  );
+  //   },
+  //   (error) => {
+  //     console.error('Error fetching item details', error);
+  //   }
+  // );
 }
 
 saveProduct() {
   console.log("ttttttttttttttttttttttttttttttttttttttttt");
   this.appConfig.onStartWaiting();
-  this.productService.saveProduct(this.product).subscribe({
+  this.productService.save$(this.product,'/').subscribe({
     next: (res: any) => {
        this.appConfig.onStartWaiting();
       if (res.status == '400') {
@@ -121,27 +121,27 @@ saveProduct() {
 }
 
 update(){
-  this.productService.updateProduct(this.itemId,this.product).subscribe({
-    next: (res: any) => {
-      this.appConfig.onStartWaiting();
-      if (res.status == '400') {
-         AppUtilitie.openInfoDialog(this.dialog, res.status.message);
-      } else {
-        this.router.navigate(
-          ['main/product/liste'],
-          { replaceUrl: true }
-        );
+  // this.productService.updateProduct(this.itemId,this.product).subscribe({
+  //   next: (res: any) => {
+  //     this.appConfig.onStartWaiting();
+  //     if (res.status == '400') {
+  //        AppUtilitie.openInfoDialog(this.dialog, res.status.message);
+  //     } else {
+  //       this.router.navigate(
+  //         ['main/product/liste'],
+  //         { replaceUrl: true }
+  //       );
         
-         AppUtilitie.openInfoDialog(this.dialog, AppFeeback.UPDATE_SUCCESS);
-        this.product = new Addproduct();
-      }
-      // console.log("respoane",res)
-    },
-    error: (e:any) => {
-       this.appConfig.onStopWaiting();
-      AppUtilitie.openInfoDialog(this.dialog, AppFeeback.NETWORK_ERROR);
-    },
-  });
+  //        AppUtilitie.openInfoDialog(this.dialog, AppFeeback.UPDATE_SUCCESS);
+  //       this.product = new Addproduct();
+  //     }
+  //     // console.log("respoane",res)
+  //   },
+  //   error: (e:any) => {
+  //      this.appConfig.onStopWaiting();
+  //     AppUtilitie.openInfoDialog(this.dialog, AppFeeback.NETWORK_ERROR);
+  //   },
+  // });
 }
 
 

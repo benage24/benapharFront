@@ -5,9 +5,9 @@ import { MainComponent } from './main.component';
 const routes: Routes = [{ path: '', component: MainComponent, children: [
   {
     path: 'dashboard',
-    loadComponent: () =>
-      import('../../../pages/dashboard/dashboard.component').then(
-        (m) => m.DashboardComponent
+    loadChildren: () =>
+      import('../../../pages//dashboards/dashboards.module').then(
+        (m) => m.DashboardsModule
       ),
   },
 

@@ -9,6 +9,8 @@ import { SubscriptionService } from 'src/app/services/subscription.service';
 import { SaleResponse } from 'src/app/entities/sale-reponse';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { AddExpenseComponent } from '../add-expense/add-expense.component';
+import { AddSaleComponent } from '../add-sale/add-sale.component';
 
 @Component({
   selector: 'app-sale-list',
@@ -144,6 +146,20 @@ export class SaleListComponent {
 
    
   }
+  
+  AddSales() {
+    const dialogRef = this.dialog.open(AddSaleComponent, {
+      height: '80%',
+      width: '40%',
+
+    });
+
+    dialogRef.afterClosed().subscribe((result) => {
+      console.log(`Dialog result: ${result}`);
+    });
+    console.log('it works');
+  }
+
 
 
     

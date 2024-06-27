@@ -100,6 +100,8 @@ export class LoginComponent {
         this.appConfig.onStopWaiting();
         this.appConfig.onConnected(res);
             this.router.navigate(['/main/dashboard']);
+            console.log(res);
+            
       },
       error: (e) => {
          this.appConfig.onStopWaiting();
