@@ -17,6 +17,7 @@ import { ExpenseListComponent } from './pages/caisses/expense-list/expense-list.
 import { SaleListComponent } from './pages/caisses/sale-list/sale-list.component';
 import { AddSaleComponent } from './pages/caisses/add-sale/add-sale.component';
 import { AddExpenseComponent } from './pages/caisses/add-expense/add-expense.component';
+import { SaleDialogComponent } from './components/dialogs/sale-dialog/sale-dialog.component';
 
 @NgModule({
   declarations: [
@@ -25,6 +26,7 @@ import { AddExpenseComponent } from './pages/caisses/add-expense/add-expense.com
     DialogInfosComponent,
    
     CaisseListComponent,
+        SaleDialogComponent,
    
  
 

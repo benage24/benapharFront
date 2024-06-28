@@ -42,6 +42,11 @@ export class CaisseReportComponent {
   totalSaving!:number
   graph: any[] = [];
   sale:any
+  saleTotal!:number
+  expenseTotal!:number
+  savingTotal!:number
+  Total!:number
+  profitTotal!:number
   apiData: number[] = [];
   graphData!:["urjtjk"]
   // data ={
@@ -64,12 +69,12 @@ export class CaisseReportComponent {
     responsive: true,
     scales: {
       x: {
-        stacked: true,
+        stacked: false,
         barPercentage: 0.6, // Adjust the width of the bars
         categoryPercentage: 0.8, // Adjust the space between bars
       },
       y: {
-        stacked: true,
+        stacked: false,
         barPercentage: 0.6, // Adjust the width of the bars
         categoryPercentage: 0.8, // Adjust the space between bars
       },
@@ -78,16 +83,10 @@ export class CaisseReportComponent {
       position: 'bottom', // This line sets the legend position to bottom
     },
   };
-  public barChartType1: string = 'bar';
-  public barChartLabels1: string[] = ['Dépense', 'Épargne', 'Solde', 'Total', 'Vente'];
+  public barChartType1: string = 'line';
+  public barChartLabels1: string[] = [];
 
-  public barChartData1: any[] = [
-    {
-      data: [],
-      label: '',
-      backgroundColor:''
-    }
-  ];
+  public barChartData1: any[] = [];
   constructor(public dialog: MatDialog,
        private appConfig: AppConfigService, 
        private caiseService:CaisseService,
@@ -101,6 +100,7 @@ export class CaisseReportComponent {
 
   ngOnInit(){
     this.currentMonthGraph()
+    this.currenYearraph()
     this.  getCaisseReport()
     const link=this.next
     console.log("link",link);
@@ -110,19 +110,8 @@ export class CaisseReportComponent {
     // this. getPaginationLink()
   }
 
-  data = {
-    labels: ['January', 'February', 'March'],
-    label: 'Sales',
-    data: [65, 59, 80],
-  };
-
-  updateData() {
-    this.data = {
-      labels: ['April', 'May', 'June'],
-      label: 'Revenue',
-      data: [45, 75, 60],
-    };
-  }
+  
+ 
   getPageRange() {
     const totalPages = Math.ceil(this.pagination.count / this.pagination.page_size);
     return Array.from({ length: totalPages }, (_, i) => i + 1);
@@ -327,15 +316,47 @@ goToPage(pageNumber: number) {
               "SOLDE": res.total_solde,
               "EPARGNE": res.total_sum_savings
             };
-  
+
+            this.saleTotal=res.total_sum_sale
+            this.expenseTotal=res.total_expenses
+            this.savingTotal=res.total_sum_savings
+            this.Total=res.total_profit
             this.graph = [transformedData] 
             
          //   this.data.labels=[transformedData] 
       
             this.chartData = transformedData;
-            console.log("comut",this.chartData)
+            console.log("comut",res)
             this.createChart();
-            this.updateChart(this.chartData)
+            // this.updateChart(this.chartData)
+      
+          }
+        },
+        error: (e) => {
+          // Handle error
+        },
+      })
+    );
+  }
+
+  currenYearraph() {
+    this.appConfig.onStartWaiting();
+    this.subscriptionService.add(
+      this.caiseService.getCaisse(`report/count/year`).pipe(
+        finalize(() => {
+          this.appConfig.onStopWaiting();
+        })
+      ).subscribe({
+        next: (res) => {
+          this.appConfig.onStopWaiting();
+          if (res !== null && res !== undefined) {
+            // Map keys here
+          
+            
+     
+     
+            this.createChart();
+            this.updateChart(res)
       
           }
         },
@@ -346,21 +367,73 @@ goToPage(pageNumber: number) {
     );
   }
   
+  // updateChart(data: any): void {
+  //   this.barChartData1 = [
+  //     {
+  //       data: [
+  //        data
+  //       ],
+  //       label:  this.currentMonth,
+  //       backgroundColor:'#11B07A',
+  //       hoverBackgroundColor: '#11B07A',
+  //     }
+  //   ];
+  // }
+
   updateChart(data: any): void {
+    // Assuming data has the following structure:
+    // {
+    //   "January": { "total_solde": 1234.56, "total_profit": 789.10, "total_expenses": 456.78, "total_sum_sale": 2345.67, "total_sum_savings": 123.45 },
+    //   ...
+    // }
+  
+    // Extract month names
+    const labelss = Object.keys(data); // ["January", "February", ...]
+    this.barChartLabels1 = Object.keys(data)
+    // Extract data for each metric
+     const totalSoldeData = labelss.map(month => data[month]?.total_solde);
+    const totalProfitData = labelss.map(month => data[month]?.total_profit);
+    const totalExpensesData = labelss.map(month => data[month]?.total_expenses);
+    const totalSumSaleData = labelss.map(month => data[month]?.total_sum_sale);
+    const totalSumSavingsData = labelss.map(month => data[month]?.total_sum_savings);
+    console.log("ffff",labelss,totalSoldeData)
+    // Update the chart data
     this.barChartData1 = [
       {
-        data: [
-          data.DEPENSE,
-          data.EPARGNE,
-          data.SOLDE,
-          data.TOTAL,
-          data.VENTE
-        ],
-        label:  this.currentMonth,
-        backgroundColor:'#11B07A',
+        data: totalSoldeData,
+        label: 'Solde',
+        backgroundColor: '#11B07A',
         hoverBackgroundColor: '#11B07A',
+      },
+      {
+        data: totalProfitData,
+        label: 'Total',
+        backgroundColor: '#FFA07A',
+        hoverBackgroundColor: '#FFA07A',
+      },
+      {
+        data: totalExpensesData,
+        label: 'Dépenses',
+        backgroundColor: '#FF6384',
+        hoverBackgroundColor: '#FF6384',
+      },
+      {
+        data: totalSumSaleData,
+        label: 'Vente',
+        backgroundColor: '#36A2EB',
+        hoverBackgroundColor: '#36A2EB',
+      },
+      {
+        data: totalSumSavingsData,
+        label: 'Epargne',
+        backgroundColor: '#FFCE56',
+        hoverBackgroundColor: '#FFCE56',
       }
     ];
+    this.barChartData1.map(item => item.label),
+  
+    // Assuming you need to call a function to refresh the chart
+    this.createChart();
   }
   createChart(): void {
     const ctx = document.getElementById('myChart') as HTMLCanvasElement;

@@ -12,7 +12,7 @@ import { NgChartsModule } from 'ng2-charts';
 export class LineChartComponent {
   @Input() chartData: any[] = [];
   @Input() chartLabels: string[] = [];
-  @Input() chartType: string = 'bar';
+  @Input() chartType: string = 'line';
   @Input() chartOptions: any = {
     responsive: true,
     scales: {
